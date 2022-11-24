@@ -105,7 +105,7 @@ func (e *exporter) pushTraces(ctx context.Context, td ptrace.Traces) error {
 
 func (e *exporter) pushMetrics(ctx context.Context, md pmetric.Metrics) error {
 	tr := pmetricotlp.NewExportRequestFromMetrics(md)
-	request, err := tr.MarshalProto()
+	request, err := tr.MarshalJSON()
 	if err != nil {
 		return consumererror.NewPermanent(err)
 	}
